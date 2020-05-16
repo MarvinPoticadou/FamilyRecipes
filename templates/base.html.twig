@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;0,900;1,100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark default-color">
+    <a class="navbar-brand" href="{{ path('home') }}">Family Recipes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link {% if current_menu is defined and current_menu == 'last' %} active {% endif %}"
+                   href="#">Derniers posts</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Catégories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Jeux</a>
+                    <a class="dropdown-item" href="#">Console</a>
+                    <a class="dropdown-item" href="#">Sport</a>
+                    <a class="dropdown-item" href="#">Musique</a>
+                </div>
+            </li>
+            {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link{% if current_menu is defined and current_menu == 'post' %} active {% endif %}" href="">Créer</a>
+                </li>
+                {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                    <li class="nav-item">
+                        <a class="nav-link{% if current_menu is defined and current_menu == 'admin' %} active {% endif %}"
+                           href="">Admin</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+        {% if app.user %}
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light-green" href="">Déconnexion</a>
+                </li>
+            </ul>
+
+        {% else %}
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light-green" href="">Inscription</a>
+                </li>
+                <li class="nav-item ml-2">
+                    <a class="nav-link btn btn-light-green" href="">Connexion</a>
+                </li>
+            </ul>
+
+        {% endif %}
+    </div>
+</nav>
+{% block body %}{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.full.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/js/mdb.min.js"></script>
+<script>
+    $('select').select2();
+</script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
