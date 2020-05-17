@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="col">
+
+        <div class="form-group">
+            <label>Image</label>
+            {{ form_row(form.pic) }}
+        </div>
+
+        <div class="form-group">
+            <label>Contenu</label>
+            {{ form_row(form.content) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(form.add, {'attr': {'class': 'btn btn-light-green'}}) }}
+            {{ form_widget(form.finish, {'attr': {'class': 'btn btn-light-green'}}) }}
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title 'Nouveau post'%}
