@@ -3,16 +3,16 @@
 {% block title recipe.title %}
 
 {% block head %}
-    <meta property="og:url"           content="https://recettes.mamawdev.fr" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Your Website Title" />
-    <meta property="og:description"   content="Your description" />
-    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+    <meta property="og:url" content="https://recettes.mamawdev.fr/index.php/recipe/{{ recipe.slug }}-{{ recipe.id }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FamilyRecipes" />
+    <meta property="og:description" content="{{ recipe.description }}" />
+    <meta property="og:image" content="https://recettes.mamawdev.fr/index.php/public/images/recipe/{{ recipe.filename }}" />
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="col-md-10 mx-auto p-0 recipe-show">
+<div class="container-fluid mt-5">
+    <div class="col-md-10 mx-auto p-0 recipe-show pt-5">
         <div class="row text-center my-4">
             <h1 class="col-md-12 recipe-title">{{ recipe.title }}</h1>
         </div>

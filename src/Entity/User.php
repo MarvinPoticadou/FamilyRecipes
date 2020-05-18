@@ -6,7 +6,9 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -40,6 +42,18 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
      * @ORM\Column(type="array")
      */
     private $roles = [];
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="user", fileNameProperty="filename")
+     */
+    private $avatar;
 
     /**
      * @ORM\Column(type="datetime")
@@ -97,6 +111,45 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param string|null $filename
+     * @return User
+     */
+    public function setFilename(?string $filename): User
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getAvatar(): ?File
+    {
+        // TODO page de compte user
+        return $this->avatar;
+    }
+
+    /**
+     * @param File|null $avatar
+     * @return User
+     */
+    public function setAvatar(?File $avatar): User
+    {
+        $this->avatar = $avatar;
+        return $this;
+    }
+
+
 
     public function getCreatedAt(): ?\DateTimeInterface
     {

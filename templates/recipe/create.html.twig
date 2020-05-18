@@ -1,65 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="col-md-8 mx-auto pt-5">
-        {{ form_start(form) }}
-        <div class="col">
-            <div class="form-group">
-                <label>Titre</label>
-                {{ form_row(form.title) }}
+    <div class="container-fluid mt-5">
+        <div class="col-md-8 mx-auto pt-5">
+            {{ form_start(form) }}
+            <div class="col">
+                <div class="form-group">
+                    <label>Titre</label>
+                    {{ form_row(form.title) }}
+                </div>
+
+                <div class="form-group">
+                    <label>Categorie</label>
+                    {{ form_row(form.category) }}
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    {{ form_row(form.description) }}
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Categorie</label>
-                {{ form_row(form.category) }}
+            <div class="col d-flex flex-row justify-content-between">
+                <div class="col-12 col-md-5 p-0">
+                    <div class="form-group">
+                        <label>Image</label>
+                        {{ form_row(form.main_pic) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre de personnes</label>
+                        {{ form_row(form.persons) }}
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-5 p-0">
+
+                    <div class="form-group">
+                        <label>Temps de préparation (Minutes)</label>
+                        {{ form_row(form.prep_time) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>Temps de cuisson (Minutes)</label>
+                        {{ form_row(form.cook_time) }}
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Description</label>
-                {{ form_row(form.description) }}
+
+            <div class="col">
+                <div class="form-group">
+                    <label>Ingredients</label>
+                    {{ form_row(form.stuff) }}
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-light-green">Étape suivante</button>
+                </div>
             </div>
+
+            {{ form_end(form) }}
         </div>
-
-        <div class="col d-flex flex-row justify-content-between">
-            <div class="col-12 col-md-5 p-0">
-                <div class="form-group">
-                    <label>Image</label>
-                    {{ form_row(form.main_pic) }}
-                </div>
-
-                <div class="form-group">
-                    <label>Nombre de personnes</label>
-                    {{ form_row(form.persons) }}
-                </div>
-            </div>
-
-            <div class="col-12 col-md-5 p-0">
-
-                <div class="form-group">
-                    <label>Temps de préparation (Minutes)</label>
-                    {{ form_row(form.prep_time) }}
-                </div>
-
-                <div class="form-group">
-                    <label>Temps de cuisson (Minutes)</label>
-                    {{ form_row(form.cook_time) }}
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col">
-            <div class="form-group">
-                <label>Ingredients</label>
-                {{ form_row(form.stuff) }}
-            </div>
-
-            <div class="form-group">
-                <button class="btn btn-light-green">Étape suivante</button>
-            </div>
-        </div>
-
-        {{ form_end(form) }}
     </div>
 {% endblock %}
 

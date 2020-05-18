@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark peach-gradient">
-    <a class="navbar-brand" href="{{ path('home') }}">Family Recipes</a>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="{{ path('home') }}">Recettes de familles</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,12 +22,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link {% if current_menu is defined and current_menu == 'last' %} active {% endif %}"
-                   href="#">Derniers posts</a>
-            </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Catégories
                 </a>
@@ -51,9 +48,17 @@
         </ul>
         {% if app.user %}
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link btn btn-light-green" href="">Déconnexion</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img style="border-radius: 25px;" alt="avatar" width="50px" height="50px" src="{{ asset('/images/jumb.jpg') }}"> {{ app.user.username }}</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('user.account', {user_id: app.user.id}) }}">Mon compte</a>
+                        <a class="dropdown-item" href="#">Mes recettes</a>
+                        <a class="dropdown-item" href="#">Déconnexion</a>
+                    </div>
                 </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link btn btn-light-green" href="">Déconnexion</a>#}
+{#                </li>#}
             </ul>
 
         {% else %}
