@@ -33,7 +33,7 @@ class SecurityController extends AbstractController {
     {
         // création du formulaire
         $user = new User();
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_USER']);
         // instancie le formulaire avec les contraintes par défaut, + la contrainte registration pour que la saisie du mot de passe soit obligatoire
         $form = $this->createForm(UserType::class, $user,[
             'validation_groups' => array('User', 'registration'),
