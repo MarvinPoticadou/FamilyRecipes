@@ -10,7 +10,7 @@ body {
 }
 
 body.admin-body {
-    background-color: #ddf5ff;
+    background-color: #ebf4fc;
 }
 
 .admin-body .fas {
@@ -36,7 +36,7 @@ body.admin-body {
 }
 
 .container-fluid {
-    height: 80vh;
+    min-height: 80vh;
 }
 
 h1.recipe-title {

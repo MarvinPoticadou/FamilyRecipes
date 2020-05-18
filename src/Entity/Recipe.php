@@ -17,6 +17,14 @@ use Cocur\Slugify\Slugify;
  */
 class Recipe
 {
+
+    const CAT = [
+        0 => 'Entrées',
+        1 => 'Plats',
+        2 => 'Desserts',
+        3 => 'Boissons'
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -76,6 +84,11 @@ class Recipe
      * @ORM\Column(type="integer")
      */
     private $persons;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $category;
 
     /**
      * @ORM\Column(type="datetime")
@@ -228,6 +241,28 @@ class Recipe
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     * @return Recipe
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    public function getCatStr() {
+        return self::CAT[$this->category];
     }
 
     public function getNbSteps(): int

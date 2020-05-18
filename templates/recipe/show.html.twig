@@ -2,6 +2,14 @@
 
 {% block title recipe.title %}
 
+{% block head %}
+    <meta property="og:url"           content="https://recettes.mamawdev.fr" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
     <div class="col-md-10 mx-auto p-0 recipe-show">
