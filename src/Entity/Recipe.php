@@ -230,6 +230,11 @@ class Recipe
         return $this;
     }
 
+    public function getNbSteps(): int
+    {
+        return count($this->steps);
+    }
+
     public function getSlug(): string
     {
         $slugify = new Slugify();

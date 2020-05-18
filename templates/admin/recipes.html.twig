@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <table class="table table-striped col-md-6 text-center mx-auto">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITRE</th>
+                <th>AUTEUR</th>
+                <th>ETAPES</th>
+                <th>ACTIONS</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for recipe in recipes %}
+
+                <tr>
+                    <td>{{ recipe.id }}</td>
+                    <td>{{ recipe.title }}</td>
+                    <td>{{ recipe.author.username }}</td>
+                    <td>{{ recipe.nbSteps }}</td>
+                    <td>
+                        <a href="" class="btn btn-warning">Editer</a>
+                        <a href="" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block title 'Admin - Recettes' %}
+

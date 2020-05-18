@@ -6,6 +6,37 @@
 
 body {
     background-color: #fff3ec;
+    min-height: 100vh;
+}
+
+body.admin-body {
+    background-color: #ddf5ff;
+}
+
+.admin-body .fas {
+    font-size: 10rem;
+}
+
+.admin-body .card {
+    background-color: #222222;
+    color: white;
+}
+
+.admin-body .card a {
+    color: white;
+}
+
+.admin-body .card .card-text {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.admin-body .card:hover {
+    cursor: pointer;
+}
+
+.container-fluid {
+    height: 80vh;
 }
 
 h1.recipe-title {
@@ -49,7 +80,7 @@ img.recipe-img {
 
 footer {
     background-color: #2d2d2d;
-    height: 150px;
+    height: 20vh;
     color: white;
     font-weight: bold;
 }

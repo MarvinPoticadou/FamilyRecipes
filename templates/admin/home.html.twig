@@ -1,0 +1,26 @@
+{% extends 'admin/base.html.twig' %}
+{% block title 'Recipes - Accueil' %}
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row h-100 d-flex flex-row justify-content-around align-items-center">
+            <div class="card col-md-2 p-3 text-center">
+                <a href="{{ path('admin.recipe.list') }}">
+                    <i class="fas fa-utensils card-img-top"></i>
+                    <div class="card-body">
+                        <h4 class="card-title">Recettes</h4>
+                        <p class="card-text">{{ nbRecipe[1] }}</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="card col-md-2 p-3 text-center">
+                <i class="fas fa-user card-img-top"></i>
+                <div class="card-body">
+                    <h4 class="card-title">Utilisateurs</h4>
+                    <p class="card-text">{{ nbUser[1] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

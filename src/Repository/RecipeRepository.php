@@ -29,6 +29,15 @@ class RecipeRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findCount()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r)')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */
