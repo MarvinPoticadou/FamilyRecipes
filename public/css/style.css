@@ -102,8 +102,12 @@ img.recipe-img {
     width: 200px;
 }
 
+.usr-img-link {
+    width: 20%;
+}
+
 .user-img {
-    border-radius: 10%;
+    border-radius: 200px;
 }
 
 .user-account .fa-edit:hover {

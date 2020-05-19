@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserEditType;
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -80,5 +83,28 @@ class UserController extends AbstractController
             'message' => 'Nom d\'utilisateur modifié !',
             'username' => $username
         ], 200);
+    }
+
+    /**
+     * @return Response
+     * @Route("/user/update/avatar", name="user.update.avatar")
+     */
+    public function updateAvatar(Request $request): Response {
+        $user = $this->getUser();
+        $form = $this->createForm(UserEditType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($user);
+            $this->em->flush();
+
+            return $this->redirectToRoute('user.update.avatar');
+        }
+
+        return $this->render('user/update.html.twig', [
+            'user' => $user,
+            'form' => $form->createView()
+        ]);
+
     }
 }

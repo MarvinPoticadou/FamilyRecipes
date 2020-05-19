@@ -5,8 +5,11 @@
 {% block body %}
     <div class="container-fluid mt-5">
         <div class="col-md-10 mx-auto p-0 user-account pt-5">
-            <div class="row text-center my-4">
-                <h1 class="col-md-12 user-title">{{ user.username }} <i class="far fa-edit"></i></h1>
+            <div class="row text-center my-4 d-flex flex-column">
+                <div class="col-md-4 d-flex justify-content-center align-items-center mx-auto">
+                    <h1 class="user-title">{{ user.username }}</h1>
+                    <i class="far fa-edit my-auto ml-3" title="Modifier"></i>
+                </div>
                 <div class="form-group mx-auto d-none">
                     <div class="d-flex flex-row align-items-center">
                         <input class="form-control" type="text" name="username" id="username" placeholder="Nouveau nom d'utilisateur">
@@ -16,12 +19,10 @@
                 </div>
             </div>
 
-            <div class="row mb-5 text-center">
-                <img class="user-img mx-auto edit-avatar" src="/images/user/{{ user.filename }}" width="20%" alt="{{ user.username }}">
-            </div>
-
-            <div class="form-group mx-auto d-none">
-                <input class="form-control" type="file" name="avatar" id="avatar">
+            <div class="row mb-5 text-center d-flex flex-row justify-content-center">
+                <a class="text-center usr-img-link" href="{{ path('user.update.avatar') }}">
+                <img class="user-img mx-auto edit-avatar" src="/images/user/{{ user.filename }}" width="100%" alt="{{ user.username }}">
+                </a>
             </div>
 
             <div class="row text-center my-4">

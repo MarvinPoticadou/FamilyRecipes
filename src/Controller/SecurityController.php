@@ -44,6 +44,8 @@ class SecurityController extends AbstractController {
             // Encode le mot de passe
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setFilename("user.png");
+            $user->setUpdatedAt(new \DateTime());
 
             // Enregistre le membre en base
             $em = $this->getDoctrine()->getManager();
@@ -56,5 +58,14 @@ class SecurityController extends AbstractController {
         return $this->render('security/register.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout", methods={"GET"})
+     */
+    public function logout()
+    {
+        // controller can be blank: it will never be executed!
+        throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 }

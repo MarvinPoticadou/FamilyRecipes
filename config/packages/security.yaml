@@ -13,7 +13,7 @@ security:
         main:
             anonymous: lazy
             logout:
-                path: /logout
+                path: app_logout
                 target: /
             # provider: users_in_memory
 

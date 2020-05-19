@@ -12,8 +12,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @Vich\Uploadable
  */
-class User implements \Symfony\Component\Security\Core\User\UserInterface
+class User implements \Symfony\Component\Security\Core\User\UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -61,6 +62,11 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
     private $created_at;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $updated_at;
+
+    /**
      * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="author", orphanRemoval=true)
      */
     private $recipes;
@@ -69,6 +75,7 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
     {
         $this->created_at = new \DateTime();
         $this->recipes = new ArrayCollection();
+        $this->filename = "user.png";
     }
 
     public function getId(): ?int
@@ -126,7 +133,12 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
      */
     public function setFilename(?string $filename): User
     {
-        $this->filename = $filename;
+        if(!$filename) {
+            $this->filename = "user.png";
+        } else {
+            $this->filename = $filename;
+        }
+
         return $this;
     }
 
@@ -142,9 +154,31 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
      * @param File|null $avatar
      * @return User
      */
-    public function setAvatar(?File $avatar): User
+    public function setAvatar(File $avatar = null): User
     {
         $this->avatar = $avatar;
+        if ($avatar) {
+            $this->updated_at = new \DateTime();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param mixed $updated_at
+     * @return User
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
         return $this;
     }
 
@@ -223,5 +257,24 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
         }
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        //die('serialize');
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password
+        ));
+    }
+
+    public function unserialize( $serialized )
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

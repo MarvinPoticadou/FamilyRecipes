@@ -53,7 +53,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('user.account', {user_id: app.user.id}) }}">Mon compte</a>
                         <a class="dropdown-item" href="#">Mes recettes</a>
-                        <a class="dropdown-item" href="#">Déconnexion</a>
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                     </div>
                 </li>
 {#                <li class="nav-item">#}

@@ -1,13 +1,10 @@
 {% extends 'base.html.twig' %}
-{% block title 'Forum - Se connecter' %}
+{% block title 'Se connecter' %}
 {% block body %}
 
     <div class="container-fluid mt-4">
         <h2 class="col-md-12 text-center">Se connecter</h2>
         <div class="row col-md-12">
-
-
-
             <form action="{{ path('login') }}" method="post" class="mx-auto">
                 <div class="form-group">
                     {% if error %}

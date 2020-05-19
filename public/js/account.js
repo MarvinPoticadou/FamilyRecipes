@@ -64,7 +64,7 @@ function editUsername(username) {
                 if (data.error) {
                     $("#username-error").text(data.errorStr).css("color", "red")
                 } else {
-                    $(".user-title").html(data.username+" <i class='far fa-edit'></i>")
+                    $(".user-title").html(data.username)
                     $(".nav-username").text(data.username)
                     $(".form-group").toggleClass("d-none")
                 }
