@@ -83,4 +83,19 @@ class RecipeController extends AbstractController {
             'steps' => $recipe->getSteps()
         ]);
     }
+
+    /**
+     * @return Response
+     * @Route("/recipe/category/{cat_id}", name="recipe.category")
+     */
+    public function category($cat_id): Response
+    {
+        $recipes = $this->repository->findBy([
+            'category' => $cat_id
+        ]);
+        return $this->render('recipe/list.html.twig', [
+            'recipes' => $recipes,
+            'cat' => Recipe::CAT[$cat_id]
+        ]);
+    }
 }

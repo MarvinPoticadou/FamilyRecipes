@@ -28,10 +28,10 @@
                     Catégories
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Entrées</a>
-                    <a class="dropdown-item" href="#">Plats</a>
-                    <a class="dropdown-item" href="#">Desserts</a>
-                    <a class="dropdown-item" href="#">Boissons</a>
+                    <a class="dropdown-item" href="{{ path('recipe.category', {cat_id: 0}) }}">Entrées</a>
+                    <a class="dropdown-item" href="{{ path('recipe.category', {cat_id: 1}) }}">Plats</a>
+                    <a class="dropdown-item" href="{{ path('recipe.category', {cat_id: 2}) }}">Desserts</a>
+                    <a class="dropdown-item" href="{{ path('recipe.category', {cat_id: 3}) }}">Boissons</a>
                 </div>
             </li>
             {% if app.user %}
@@ -52,7 +52,6 @@
                     <a class="nav-link d-flex flex-row" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img style="border-radius: 25px;" alt="avatar" width="50px" height="50px" src="/images/user/{{ app.user.filename }}"> <span class="nav-username pt-1 ml-2">{{ app.user.username }}</span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('user.account', {user_id: app.user.id}) }}">Mon compte</a>
-                        <a class="dropdown-item" href="#">Mes recettes</a>
                         <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
                     </div>
                 </li>
