@@ -43,7 +43,7 @@ h1 {
     font-family: 'Shadows Into Light', cursive;
 }
 
-h1.recipe-title {
+h1.recipe-title, h1.user-title {
     font-family: Roboto, cursive;
     font-size: 3rem;
     font-weight: bold;
@@ -96,6 +96,22 @@ img.recipe-img {
 
 .navbar a {
     font-size: 1.5rem;
+}
+
+.user-recipe-card img {
+    width: 200px;
+}
+
+.user-img {
+    border-radius: 10%;
+}
+
+.user-account .fa-edit:hover {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
 }
 
 footer {

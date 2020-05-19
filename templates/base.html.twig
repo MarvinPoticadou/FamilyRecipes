@@ -49,7 +49,7 @@
         {% if app.user %}
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img style="border-radius: 25px;" alt="avatar" width="50px" height="50px" src="{{ asset('/images/jumb.jpg') }}"> {{ app.user.username }}</a>
+                    <a class="nav-link d-flex flex-row" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img style="border-radius: 25px;" alt="avatar" width="50px" height="50px" src="/images/user/{{ app.user.filename }}"> <span class="nav-username pt-1 ml-2">{{ app.user.username }}</span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('user.account', {user_id: app.user.id}) }}">Mon compte</a>
                         <a class="dropdown-item" href="#">Mes recettes</a>
@@ -83,7 +83,7 @@
     </footer>
 {% endblock %}
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.full.min.js"></script>

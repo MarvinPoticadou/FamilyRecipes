@@ -4,36 +4,47 @@
 
 {% block body %}
     <div class="container-fluid mt-5">
-        <div class="col-md-10 mx-auto p-0 recipe-show pt-5">
+        <div class="col-md-10 mx-auto p-0 user-account pt-5">
             <div class="row text-center my-4">
-                <h1 class="col-md-12 recipe-title">{{ recipe.title }}</h1>
-            </div>
-
-            <div class="row mb-5">
-                <img class="recipe-img" src="/images/recipe/{{ recipe.filename }}" width="30%" alt="{{ recipe.title }}">
-                <div class="col-md-6 pl-5">
-                    <h3>Ingredients</h3>
-                    {% autoescape %}
-                        {{ recipe.stuff|raw }}
-                    {% endautoescape %}
-
-                    <h3>{{ recipe.description }}</h3>
-                    <span class="badge badge-pill light-green d-flex col-md-2"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
-                    <span class="badge badge-pill light-green d-flex col-md-2 mt-1"><i class="fas fa-utensils fa-2x"></i><p class="m-auto">{{ recipe.prepTime }} min.</p></span>
-                    <span class="badge badge-pill light-green d-flex col-md-2 mt-1"><i class="fas fa-temperature-high fa-2x"></i><p class="m-auto">{{ recipe.cookTime }} min.</p></span>
-                </div>
-            </div>
-
-            {% for step in steps %}
-                <div class="row mt-5 col-md-10 step-show p-0">
-                    <img src="/images/recipe/{{ step.filename }}" width="20%">
-                    <div class="col p-4">
-                        <h3>{{ step.title }}</h3>
-                        <p>{{ step.content }}</p>
+                <h1 class="col-md-12 user-title">{{ user.username }} <i class="far fa-edit"></i></h1>
+                <div class="form-group mx-auto d-none">
+                    <div class="d-flex flex-row align-items-center">
+                        <input class="form-control" type="text" name="username" id="username" placeholder="Nouveau nom d'utilisateur">
+                        <button class="btn btn-light-green p-2 edit-btn"><i class="far fa-paper-plane"></i></button>
                     </div>
+                    <span id="username-error"></span>
                 </div>
-            {% endfor %}
+            </div>
+
+            <div class="row mb-5 text-center">
+                <img class="user-img mx-auto edit-avatar" src="/images/user/{{ user.filename }}" width="20%" alt="{{ user.username }}">
+            </div>
+
+            <div class="form-group mx-auto d-none">
+                <input class="form-control" type="file" name="avatar" id="avatar">
+            </div>
+
+            <div class="row text-center my-4">
+                <h1 class="col-md-12 recipe-title">Mes recettes</h1>
+            </div>
+
+            <div class="row d-flex flex-column flex-wrap">
+                {% for recipe in recipes %}
+                    <div class="card mb-4 col-md-6 p-0 flex-row user-recipe-card mx-auto">
+                        <img class="card-img-top" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
+                        <div class="card-body text-center">
+                            <h4 class="card-title"><a>{{ recipe.title }}</a></h4>
+                            <p class="card-text">{{ recipe.description }}</p>
+                            <a href="#" class="btn btn-light-green">Voir</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/account.js') }}"></script>
 {% endblock %}
 

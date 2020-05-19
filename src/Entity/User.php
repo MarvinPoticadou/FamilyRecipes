@@ -135,7 +135,6 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface
      */
     public function getAvatar(): ?File
     {
-        // TODO page de compte user
         return $this->avatar;
     }
 
