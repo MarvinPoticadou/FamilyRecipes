@@ -11,11 +11,13 @@
 
     <div class="container-fluid p-5 mt-5">
         <h1 class="col-md-12 text-center">Dernières recettes</h1>
-        <div class="row">
+        <div class="row d-flex justify-content-around flex-wrap mt-4">
             {% for recipe in last %}
 
                 <div class="card col-md-3 p-0">
-                    <img class="card-img-top" src="/images/recipe/{{ recipe.filename }}" alt="Card image cap">
+                    <div class="card-img">
+                        <img class="card-img-top" src="/images/recipe/{{ recipe.filename }}" alt="Card image cap">
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title"><a>{{ recipe.title }}</a></h4>
                         <p class="card-text">{{ recipe.description }}</p>

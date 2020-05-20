@@ -118,6 +118,11 @@ img.recipe-img {
     display: none;
 }
 
+.card-img {
+    max-height: 340px;
+    overflow: hidden;
+}
+
 footer {
     background-color: #2d2d2d;
     height: 20vh;
