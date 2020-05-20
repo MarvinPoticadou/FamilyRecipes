@@ -1,26 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-    <div class="col">
+    <div class="container-fluid d-flex flex-row justify-content-center mt-5">
+        <div class="col-md-8 flex-column justify-content-center align-items-center mt-5" style="border-right: 2px solid grey;">
+            <h2>{{ title }}</h2>
+            {{ form_start(form) }}
+            <div class="col">
 
-        <div class="form-group">
-            <label>Image</label>
-            {{ form_row(form.pic) }}
+                <div class="form-group">
+                    <label>Image</label>
+                    {{ form_row(form.pic) }}
+                </div>
+
+                <div class="form-group">
+                    <label>Contenu</label>
+                    {{ form_row(form.content) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_widget(form.add, {'attr': {'class': 'btn btn-light-green'}}) }}
+                    {{ form_widget(form.finish, {'attr': {'class': 'btn btn-light-green'}}) }}
+                </div>
+            </div>
+
+            {{ form_end(form) }}
         </div>
-
-        <div class="form-group">
-            <label>Contenu</label>
-            {{ form_row(form.content) }}
-        </div>
-
-        <div class="form-group">
-            {{ form_widget(form.add, {'attr': {'class': 'btn btn-light-green'}}) }}
-            {{ form_widget(form.finish, {'attr': {'class': 'btn btn-light-green'}}) }}
+        <div class="col-md-4 flex-column mt-5" style="max-height: 80vh;overflow-y: scroll;">
+            <h2>Étapes</h2>
+            {% for rightStep in steps %}
+                <div class="card mb-4 col-md-12 p-0 flex-row user-recipe-card mx-auto">
+                    <img class="card-img-top" src="/images/recipe/{{ rightStep.filename }}" alt="{{ rightStep.filename }}">
+                    <div class="card-body text-center">
+                        <h4>{{ rightStep.title }}</h4>
+                        <p class="card-text">{{ rightStep.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
-
-    {{ form_end(form) }}
 {% endblock %}
 
 {% block title 'Nouveau post'%}

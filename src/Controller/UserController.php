@@ -107,4 +107,18 @@ class UserController extends AbstractController
         ]);
 
     }
+
+
+    /**
+     * @return Response
+     * @Route("/user/profile/{user_id}", name="user.show")
+     * @ParamConverter("user", options={"mapping": {"user_id"   : "id"}})
+     */
+    public function show(User $user): Response
+    {
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+            'recipes' => $user->getRecipes()
+        ]);
+    }
 }

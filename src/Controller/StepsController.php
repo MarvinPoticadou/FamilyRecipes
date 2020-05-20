@@ -77,6 +77,8 @@ class StepsController extends AbstractController
 
         return $this->render('steps/create.html.twig', [
             'step' => $step,
+            'steps' => $recipe->getSteps(),
+            'title' => 'Étape '.$nb,
             'form' => $form->createView()
         ]);
     }

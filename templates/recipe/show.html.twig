@@ -30,6 +30,12 @@
                 <span class="badge badge-pill light-green d-flex col-md-2 mt-1"><i class="fas fa-utensils fa-2x"></i><p class="m-auto">{{ recipe.prepTime }} min.</p></span>
                 <span class="badge badge-pill light-green d-flex col-md-2 mt-1"><i class="fas fa-temperature-high fa-2x"></i><p class="m-auto">{{ recipe.cookTime }} min.</p></span>
             </div>
+            <div class="col-md-2 text-center">
+                <a href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
+                    <img src="/images/user/{{ recipe.author.filename }}" alt="avatar" width="100%" style="border-radius: 200px;">
+                    <h3>{{ recipe.author.username }}</h3>
+                </a>
+            </div>
         </div>
 
         {% for step in steps %}
