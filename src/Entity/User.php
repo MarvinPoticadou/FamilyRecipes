@@ -133,12 +133,7 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface, \Seri
      */
     public function setFilename(?string $filename): User
     {
-        if(!$filename) {
-            $this->filename = "user.png";
-        } else {
-            $this->filename = $filename;
-        }
-
+        $this->filename = $filename;
         return $this;
     }
 

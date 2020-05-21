@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-2 text-center">
                 <a href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
-                    <img src="/images/user/{{ recipe.author.filename }}" alt="avatar" width="100%" style="border-radius: 200px;">
+                    <img src="/images/user/{% if recipe.author.filename is same as ("") %}user.png{% else %}{{ recipe.author.filename }}{% endif %}" alt="avatar" width="100%" style="border-radius: 200px;">
                     <h3>{{ recipe.author.username }}</h3>
                 </a>
             </div>
@@ -50,4 +50,6 @@
     </div>
 </div>
 {% endblock %}
+
+
 

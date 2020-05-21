@@ -44,7 +44,6 @@ class SecurityController extends AbstractController {
             // Encode le mot de passe
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $user->setFilename("user.png");
             $user->setUpdatedAt(new \DateTime());
 
             // Enregistre le membre en base

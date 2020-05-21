@@ -12,7 +12,7 @@
             </div>
 
             <div class="row mb-5 text-center d-flex flex-row justify-content-center">
-                <img class="user-img mx-auto edit-avatar" src="/images/user/{{ user.filename }}" width="20%" alt="{{ user.username }}">
+                <img class="user-img mx-auto edit-avatar" src="/images/user/{% if user.filename is same as ("") %}user.png{% else %}{{ user.filename }}{% endif %}" width="20%" alt="{{ user.username }}">
             </div>
 
             <div class="row text-center my-4">

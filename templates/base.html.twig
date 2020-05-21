@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
@@ -49,7 +50,7 @@
         {% if app.user %}
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link d-flex flex-row" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img style="border-radius: 25px;" alt="avatar" width="50px" height="50px" src="/images/user/{{ app.user.filename }}"> <span class="nav-username pt-1 ml-2">{{ app.user.username }}</span></a>
+                    <a class="nav-link d-flex flex-row" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img style="border-radius: 25px;" alt="avatar" width="50px" height="50px" src="/images/user/{% if app.user.filename is same as ("") %}user.png{% else %}{{ app.user.filename }}{% endif %}"> <span class="nav-username pt-1 ml-2">{{ app.user.username }}</span></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('user.account', {user_id: app.user.id}) }}">Mon compte</a>
                         <a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
