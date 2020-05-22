@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Form\RecipeEditType;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -96,6 +98,33 @@ class RecipeController extends AbstractController {
         return $this->render('recipe/list.html.twig', [
             'recipes' => $recipes,
             'cat' => Recipe::CAT[$cat_id]
+        ]);
+    }
+
+    /**
+     * @return Response
+     * @Route("/edit/recipe/{recipe_id}", name="recipe.edit")
+     * @ParamConverter("recipe", options={"mapping": {"recipe_id"   : "id"}})
+     */
+    public function edit(Request $request, Recipe $recipe): Response
+    {
+        $form = $this->createForm(RecipeEditType::class, $recipe);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($recipe);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Recette modifiée avec succès');
+            return $this->redirectToRoute('recipe.show', [
+                'id' => $recipe->getId(),
+                'slug' => $recipe->getSlug()
+            ]);
+        }
+
+        return $this->render('recipe/edit.html.twig', [
+            'recipe' => $recipe,
+            'form' => $form->createView()
         ]);
     }
 }

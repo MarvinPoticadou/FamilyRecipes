@@ -95,6 +95,11 @@ class Recipe
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
     public function __construct()
     {
         $this->steps = new ArrayCollection();
@@ -157,9 +162,13 @@ class Recipe
     /**
      * @param File|null $main_pic
      */
-    public function setMainPic(?File $main_pic): void
+    public function setMainPic(?File $main_pic): Recipe
     {
         $this->main_pic = $main_pic;
+        if ($main_pic) {
+            $this->updated_at = new \DateTime();
+        }
+        return $this;
     }
 
 
@@ -296,6 +305,18 @@ class Recipe
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

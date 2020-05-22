@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Entity\Steps;
+use App\Form\StepsEditType;
 use App\Form\StepsType;
 use App\Repository\StepsRepository;
 use App\Repository\UserRepository;
@@ -79,6 +80,35 @@ class StepsController extends AbstractController
             'step' => $step,
             'steps' => $recipe->getSteps(),
             'title' => 'Étape '.$nb,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Steps $step
+     * @return Response
+     * @Route("/edit/steps/{step_id}", name="steps.edit")
+     * @ParamConverter("step", options={"mapping": {"step_id"   : "id"}})
+     */
+    public function edit(Request $request, Steps $step): Response
+    {
+        $form = $this->createForm(StepsEditType::class, $step);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $this->em->persist($step);
+            $this->em->flush();
+
+            $this->addFlash('success', 'Etape modifiée avec succès');
+            return $this->redirectToRoute('recipe.show', [
+                'id' => $step->getRecipe()->getId(),
+                'slug' => $step->getRecipe()->getSlug()
+            ]);
+        }
+
+        return $this->render('steps/edit.html.twig', [
+            'step' => $step,
             'form' => $form->createView()
         ]);
     }

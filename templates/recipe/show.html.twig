@@ -26,9 +26,18 @@
                 {% endautoescape %}
 
                 <h3>{{ recipe.description }}</h3>
-                <span class="badge badge-pill light-green d-flex col-md-2"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
-                <span class="badge badge-pill light-green d-flex col-md-2 mt-1"><i class="fas fa-utensils fa-2x"></i><p class="m-auto">{{ recipe.prepTime }} min.</p></span>
-                <span class="badge badge-pill light-green d-flex col-md-2 mt-1"><i class="fas fa-temperature-high fa-2x"></i><p class="m-auto">{{ recipe.cookTime }} min.</p></span>
+                <div class="row col-md-12 d-flex">
+                    <div class="col-md-8">
+                        <span class="badge badge-pill light-green d-flex col-md-3"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
+                        <span class="badge badge-pill light-green d-flex col-md-3 mt-1"><i class="fas fa-utensils fa-2x"></i><p class="m-auto">{{ recipe.prepTime }} min.</p></span>
+                        <span class="badge badge-pill light-green d-flex col-md-3 mt-1"><i class="fas fa-temperature-high fa-2x"></i><p class="m-auto">{{ recipe.cookTime }} min.</p></span>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        {% if app.user is same as (recipe.author) %}
+                            <a href="{{ path('recipe.edit', {recipe_id: recipe.id}) }}" class="btn btn-light-green">Modifier</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
             <div class="col-md-2 text-center">
                 <a href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
@@ -44,6 +53,9 @@
                 <div class="col p-4">
                     <h3>{{ step.title }}</h3>
                     <p>{{ step.content }}</p>
+                    {% if app.user is same as (recipe.author) %}
+                    <a href="{{ path('steps.edit', {step_id: step.id}) }}" class="btn btn-light-green">Modifier</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

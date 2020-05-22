@@ -31,4 +31,7 @@ class AdminRecipeController extends AbstractController
             'recipes' => $recipes
         ]);
     }
+
+    //TODO Modification des recettes
+    //TODO Suppression des recettes
 }

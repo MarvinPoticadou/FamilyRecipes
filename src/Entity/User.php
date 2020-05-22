@@ -212,7 +212,7 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface, \Seri
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -220,7 +220,6 @@ class User implements \Symfony\Component\Security\Core\User\UserInterface, \Seri
      */
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
     }
 
     /**
