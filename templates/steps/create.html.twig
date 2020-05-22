@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container-fluid d-flex flex-row justify-content-center mt-5">
-        <div class="col-md-8 flex-column justify-content-center align-items-center mt-5" style="border-right: 2px solid grey;">
+    <div class="container-fluid d-flex flex-column flex-md-row justify-content-center mt-5">
+        <div class="step-create col-md-8 flex-column justify-content-center align-items-center mt-5">
             <h2>{{ title }}</h2>
             {{ form_start(form) }}
             <div class="col">
@@ -25,17 +25,19 @@
 
             {{ form_end(form) }}
         </div>
-        <div class="col-md-4 flex-column mt-5" style="max-height: 80vh;overflow-y: scroll;">
+        <div class="created-steps col-md-4 flex-column mt-5">
             <h2>Étapes</h2>
-            {% for rightStep in steps %}
-                <div class="card mb-4 col-md-12 p-0 flex-row user-recipe-card mx-auto">
-                    <img class="card-img-top" src="/images/recipe/{{ rightStep.filename }}" alt="{{ rightStep.filename }}">
-                    <div class="card-body text-center">
-                        <h4>{{ rightStep.title }}</h4>
-                        <p class="card-text">{{ rightStep.content }}</p>
+            <div class="col-md-12 flex-column-reverse">
+                {% for rightStep in steps %}
+                    <div class="card mb-4 col-md-12 p-0 flex-column flex-md-row user-recipe-card mx-auto">
+                        <img class="card-img-top" src="/images/recipe/{{ rightStep.filename }}" alt="{{ rightStep.filename }}">
+                        <div class="card-body text-center">
+                            <h4>{{ rightStep.title }}</h4>
+                            <p class="card-text">{{ rightStep.content }}</p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

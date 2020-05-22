@@ -18,14 +18,14 @@
         </div>
 
         <div class="row mb-5">
-            <img class="recipe-img" src="/images/recipe/{{ recipe.filename }}" width="30%" alt="{{ recipe.title }}">
-            <div class="col-md-6 pl-5">
-                <h3>Ingredients</h3>
+            <img class="recipe-img" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
+            <div class="col-md-6 pl-md-5">
+                <h3 class="text-center">Ingredients</h3>
                 {% autoescape %}
                     {{ recipe.stuff|raw }}
                 {% endautoescape %}
 
-                <h3>{{ recipe.description }}</h3>
+                <h3 class="text-center">{{ recipe.description }}</h3>
                 <div class="row col-md-12 d-flex">
                     <div class="col-md-8">
                         <span class="badge badge-pill light-green d-flex col-md-3"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
@@ -34,12 +34,12 @@
                     </div>
                     <div class="col-md-4 d-flex align-items-end">
                         {% if app.user is same as (recipe.author) %}
-                            <a href="{{ path('recipe.edit', {recipe_id: recipe.id}) }}" class="btn btn-light-green">Modifier</a>
+                            <a href="{{ path('recipe.edit', {recipe_id: recipe.id}) }}" class="btn btn-light-green btn-edit-recipe">Modifier</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-2 text-center recipe-user">
                 <a href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
                     <img src="/images/user/{% if recipe.author.filename is same as ("") %}user.png{% else %}{{ recipe.author.filename }}{% endif %}" alt="avatar" width="100%" style="border-radius: 200px;">
                     <h3>{{ recipe.author.username }}</h3>
@@ -48,8 +48,8 @@
         </div>
 
         {% for step in steps %}
-            <div class="row mt-5 col-md-10 step-show p-0">
-                <img src="/images/recipe/{{ step.filename }}" width="20%">
+            <div class="row d-flex flex-column flex-md-row mt-5 col-md-10 step-show p-0 mx-auto">
+                <img class="steps-img" src="/images/recipe/{{ step.filename }}">
                 <div class="col p-4">
                     <h3>{{ step.title }}</h3>
                     <p>{{ step.content }}</p>

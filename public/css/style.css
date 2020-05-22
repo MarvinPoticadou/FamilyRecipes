@@ -56,6 +56,11 @@ h3 {
 img.recipe-img {
     border-radius: 3px;
     box-shadow: 0 0 10px 4px #9a9a9a;
+    width: 30%;
+}
+
+img.steps-img {
+    width: 20%;
 }
 
 .recipe-show ul li {
@@ -77,6 +82,15 @@ img.recipe-img {
     background-color: white;
     border-bottom-right-radius: 3px;
     border-top-right-radius: 3px;
+}
+
+.step-create {
+    border-right: 2px solid grey;
+}
+
+.created-steps {
+    max-height: 80vh;
+    overflow-y: scroll;
 }
 
 .navbar {
