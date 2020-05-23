@@ -5,7 +5,7 @@
 {% block head %}
     <meta property="og:url" content="https://recettes.mamawdev.fr/index.php/recipe/{{ recipe.slug }}-{{ recipe.id }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Recettes de famille" />
+    <meta property="og:title" content="Recettes" />
     <meta property="og:description" content="{{ recipe.description }}" />
     <meta property="og:image" content="https://recettes.mamawdev.fr/index.php/public/images/recipe/{{ recipe.filename }}" />
 {% endblock %}
@@ -35,8 +35,6 @@
                         </div>
                         <div class="col-md-6">
                             <span id="fb-share" class="badge badge-pill badge-share facebook light-blue d-flex col-md-4"><i class="fab fa-facebook fa-2x"></i><p class="m-auto">Partager</p></span>
-                            <span id="insta-share" class="badge badge-pill badge-share insta light-blue d-flex col-md-4 mt-1"><i class="fab fa-instagram fa-2x"></i><p class="m-auto">Partager</p></span>
-                            <span id="twit-share" class="badge badge-pill badge-share twit light-blue d-flex col-md-4 mt-1"><i class="fab fa-twitter fa-2x"></i><p class="m-auto">Partager</p></span>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex align-items-end">
