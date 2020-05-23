@@ -16,15 +16,15 @@
 
         <h1 class="recipe-title text-center">{{ recipe.title }}</h1>
 
-        <div class="col-md-12 d-flex">
+        <div class="col-md-12 d-flex flex-column flex-md-row">
 
-            <div class="recipe-left-head d-flex flex-md-column col-md-6">
+            <div class="recipe-left-head d-flex flex-md-column col-12 col-md-6">
                 <div class="recipe-img-container">
                     <img class="recipe-img mx-auto" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
                 </div>
             </div>
 
-            <div class="recipe-right-head d-flex flex-md-column col-md-6">
+            <div class="recipe-right-head d-flex flex-column col-12 col-md-6 my-3 my-md-0">
 
                 <div class="recipe-stuff">
                     <h3 class="text-center">Ingredients</h3>
