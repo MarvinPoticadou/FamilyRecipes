@@ -30,10 +30,26 @@
     }
 
     .recipe-user {
-        display: none;
+        margin-top: 20px;
+        border-radius: 3px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0 10px 4px #9c9c9c;
     }
 
     .step-create {
         border-right: none;
+    }
+
+    .usr-img-link {
+        width: 60%;
+    }
+
+    .user-img {
+        width: 50%;
+    }
+
+    .recipe-show-avatar {
+        width: 30%;
     }
 }

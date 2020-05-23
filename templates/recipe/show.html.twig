@@ -5,7 +5,7 @@
 {% block head %}
     <meta property="og:url" content="https://recettes.mamawdev.fr/index.php/recipe/{{ recipe.slug }}-{{ recipe.id }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="FamilyRecipes" />
+    <meta property="og:title" content="Recettes de famille" />
     <meta property="og:description" content="{{ recipe.description }}" />
     <meta property="og:image" content="https://recettes.mamawdev.fr/index.php/public/images/recipe/{{ recipe.filename }}" />
 {% endblock %}
@@ -27,10 +27,17 @@
 
                 <h3 class="text-center">{{ recipe.description }}</h3>
                 <div class="row col-md-12 d-flex">
-                    <div class="col-md-8">
-                        <span class="badge badge-pill light-green d-flex col-md-3"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
-                        <span class="badge badge-pill light-green d-flex col-md-3 mt-1"><i class="fas fa-utensils fa-2x"></i><p class="m-auto">{{ recipe.prepTime }} min.</p></span>
-                        <span class="badge badge-pill light-green d-flex col-md-3 mt-1"><i class="fas fa-temperature-high fa-2x"></i><p class="m-auto">{{ recipe.cookTime }} min.</p></span>
+                    <div class="col-md-12 d-flex">
+                        <div class="col-md-6">
+                            <span class="badge badge-pill light-green d-flex col-md-4"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
+                            <span class="badge badge-pill light-green d-flex col-md-4 mt-1"><i class="fas fa-utensils fa-2x"></i><p class="m-auto">{{ recipe.prepTime }} min.</p></span>
+                            <span class="badge badge-pill light-green d-flex col-md-4 mt-1"><i class="fas fa-temperature-high fa-2x"></i><p class="m-auto">{{ recipe.cookTime }} min.</p></span>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="fb-share" class="badge badge-pill badge-share facebook light-blue d-flex col-md-4"><i class="fab fa-facebook fa-2x"></i><p class="m-auto">Partager</p></span>
+                            <span id="insta-share" class="badge badge-pill badge-share insta light-blue d-flex col-md-4 mt-1"><i class="fab fa-instagram fa-2x"></i><p class="m-auto">Partager</p></span>
+                            <span id="twit-share" class="badge badge-pill badge-share twit light-blue d-flex col-md-4 mt-1"><i class="fab fa-twitter fa-2x"></i><p class="m-auto">Partager</p></span>
+                        </div>
                     </div>
                     <div class="col-md-4 d-flex align-items-end">
                         {% if app.user is same as (recipe.author) %}
@@ -39,9 +46,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 text-center recipe-user">
-                <a href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
-                    <img src="/images/user/{% if recipe.author.filename is same as ("") %}user.png{% else %}{{ recipe.author.filename }}{% endif %}" alt="avatar" width="100%" style="border-radius: 200px;">
+            <div class="col-10 col-md-2 text-center recipe-user p-2 p-md-0">
+                <a class="d-flex flex-row flex-md-column align-items-center justify-content-around" href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
+                    <img class="recipe-show-avatar" src="/images/user/{% if recipe.author.filename is same as ("") %}user.png{% else %}{{ recipe.author.filename }}{% endif %}" alt="avatar" width="100%" style="border-radius: 200px;">
                     <h3>{{ recipe.author.username }}</h3>
                 </a>
             </div>
@@ -61,6 +68,18 @@
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.getElementById('fb-share').onclick = function() {
+            FB.ui({
+                display: 'popup',
+                method: 'share',
+                href: 'https://recettes.mamawdev.fr{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}',
+            }, function(response){});
+        }
+    </script>
 {% endblock %}
 
 

@@ -21,7 +21,7 @@
 
             <div class="row mb-5 text-center d-flex flex-row justify-content-center">
                 <a class="text-center usr-img-link" href="{{ path('user.update.avatar') }}">
-                <img class="user-img mx-auto edit-avatar" src="/images/user/{% if user.filename is same as ("") %}user.png{% else %}{{ user.filename }}{% endif %}" width="100%" alt="{{ user.username }}">
+                <img class="user-img mx-auto edit-avatar" src="/images/user/{% if user.filename is same as ("") %}user.png{% else %}{{ user.filename }}{% endif %}" alt="{{ user.username }}">
                 </a>
             </div>
 
@@ -31,7 +31,7 @@
 
             <div class="row d-flex justify-content-around flex-wrap">
                 {% for recipe in recipes %}
-                    <div class="card mb-4 col-md-5 p-0 flex-row user-recipe-card mx-auto">
+                    <div class="card mb-4 col-10 col-md-5 p-0 flex-column flex-md-row user-recipe-card mx-auto">
                         <img class="card-img-top" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
                         <div class="card-body text-center">
                             <h4 class="card-title"><a>{{ recipe.title }}</a></h4>

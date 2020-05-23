@@ -68,6 +68,14 @@ img.steps-img {
     font-size: 1.5rem;
 }
 
+.recipe-show-avatar {
+    width: 100%;
+}
+
+a:not(.navbar) {
+    color: black;
+}
+
 .step-show {
     border-radius: 3px;
     box-shadow: 0 0 10px 4px #9c9c9c;
@@ -122,6 +130,7 @@ img.steps-img {
 
 .user-img {
     border-radius: 200px;
+    width: 20%;
 }
 
 .user-account .fa-edit:hover {
@@ -135,6 +144,10 @@ img.steps-img {
 .card-img {
     max-height: 340px;
     overflow: hidden;
+}
+
+.badge-share:hover {
+    cursor: pointer;
 }
 
 footer {

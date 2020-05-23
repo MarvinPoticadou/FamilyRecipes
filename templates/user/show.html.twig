@@ -12,7 +12,7 @@
             </div>
 
             <div class="row mb-5 text-center d-flex flex-row justify-content-center">
-                <img class="user-img mx-auto edit-avatar" src="/images/user/{% if user.filename is same as ("") %}user.png{% else %}{{ user.filename }}{% endif %}" width="20%" alt="{{ user.username }}">
+                <img class="user-img mx-auto edit-avatar" src="/images/user/{% if user.filename is same as ("") %}user.png{% else %}{{ user.filename }}{% endif %}" alt="{{ user.username }}">
             </div>
 
             <div class="row text-center my-4">
@@ -21,12 +21,12 @@
 
             <div class="row d-flex justify-content-around flex-wrap">
                 {% for recipe in recipes %}
-                    <div class="card mb-4 col-md-6 p-0 flex-row user-recipe-card mx-auto">
+                    <div class="card mb-4 col-10 col-md-5 p-0 flex-column flex-md-row user-recipe-card mx-auto">
                         <img class="card-img-top" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
                         <div class="card-body text-center">
                             <h4 class="card-title"><a>{{ recipe.title }}</a></h4>
                             <p class="card-text">{{ recipe.description }}</p>
-                            <a href="#" class="btn btn-light-green">Voir</a>
+                            <a href="{{ path('recipe.show', {id: recipe.id, slug: recipe.slug}) }}" class="btn btn-light-green">Voir</a>
                         </div>
                     </div>
                 {% endfor %}
