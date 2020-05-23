@@ -12,21 +12,28 @@
 
 {% block body %}
 <div class="container-fluid mt-5">
-    <div class="col-md-10 mx-auto p-0 recipe-show pt-5">
-        <div class="row text-center my-4">
-            <h1 class="col-md-12 recipe-title">{{ recipe.title }}</h1>
-        </div>
+    <div class="col-md-12 mx-auto p-0 recipe-show pt-5">
 
-        <div class="row mb-5">
-            <img class="recipe-img" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
-            <div class="col-md-6 pl-md-5">
-                <h3 class="text-center">Ingredients</h3>
-                {% autoescape %}
-                    {{ recipe.stuff|raw }}
-                {% endautoescape %}
+        <h1 class="recipe-title text-center">{{ recipe.title }}</h1>
 
-                <h3 class="text-center">{{ recipe.description }}</h3>
-                <div class="row col-md-12 d-flex">
+        <div class="col-md-12 d-flex">
+
+            <div class="recipe-left-head d-flex flex-md-column col-md-6">
+                <div class="recipe-img-container">
+                    <img class="recipe-img mx-auto" src="/images/recipe/{{ recipe.filename }}" alt="{{ recipe.title }}">
+                </div>
+            </div>
+
+            <div class="recipe-right-head d-flex flex-md-column col-md-6">
+
+                <div class="recipe-stuff">
+                    <h3 class="text-center">Ingredients</h3>
+                    {% autoescape %}
+                        {{ recipe.stuff|raw }}
+                    {% endautoescape %}
+                </div>
+
+                <div class="recipe-badge">
                     <div class="col-md-12 d-flex">
                         <div class="col-md-6">
                             <span class="badge badge-pill light-green d-flex col-md-4"><i class="fas fa-users fa-2x" aria-hidden="true"></i><p class="m-auto">{{ recipe.persons }}</p></span>
@@ -37,19 +44,12 @@
                             <span id="fb-share" class="badge badge-pill badge-share facebook light-blue d-flex col-md-4"><i class="fab fa-facebook fa-2x"></i><p class="m-auto">Partager</p></span>
                         </div>
                     </div>
-                    <div class="col-md-4 d-flex align-items-end">
-                        {% if app.user is same as (recipe.author) %}
-                            <a href="{{ path('recipe.edit', {recipe_id: recipe.id}) }}" class="btn btn-light-green btn-edit-recipe">Modifier</a>
-                        {% endif %}
-                    </div>
                 </div>
             </div>
-            <div class="col-10 col-md-2 text-center recipe-user p-2 p-md-0">
-                <a class="d-flex flex-row flex-md-column align-items-center justify-content-around" href="{% if app.user == recipe.author %} {{ path('user.account', {user_id: app.user.id}) }} {% else %} {{ path('user.show', {user_id: recipe.author.id}) }} {% endif %}">
-                    <img class="recipe-show-avatar" src="/images/user/{% if recipe.author.filename is same as ("") %}user.png{% else %}{{ recipe.author.filename }}{% endif %}" alt="avatar" width="100%" style="border-radius: 200px;">
-                    <h3>{{ recipe.author.username }}</h3>
-                </a>
-            </div>
+        </div>
+
+        <div class="recipe-desc-container my-5">
+            <h3 class="text-center">{{ recipe.description }}</h3>
         </div>
 
         {% for step in steps %}
